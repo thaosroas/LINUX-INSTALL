@@ -4,6 +4,13 @@
 # Copies the .conf into /etc/wireguard/ and enables wg-quick@<name>.service,
 # so systemd brings the tunnel up on every boot without any manual command.
 #
+# NOTE: if this box uses NetworkManager (most desktops, including Omarchy),
+# consider importing the config into NetworkManager instead - see
+# WIREGUARD-AUTOSTART.md "Method 1" for why, and how to add
+# PersistentKeepalive there. Do NOT run both on the same interface name:
+# NetworkManager and wg-quick will fight over creating/deleting the
+# interface and you'll see "wg-quick: '<name>' already exists" forever.
+#
 # Usage: ./wireguard-autostart.sh [path/to/config.conf]
 #        (defaults to ~/Downloads/tw-tai.conf)
 
